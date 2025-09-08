@@ -1,15 +1,16 @@
-﻿namespace CarListApp.Maui
+﻿using CarListApp.Maui.Services;
+
+namespace CarListApp.Maui
 {
     public partial class App : Application
     {
-        public App()
+        public static CarService CarService { get; private set; }
+        public App(CarService carService)
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            MainPage = new AppShell();
+            CarService = carService;
         }
     }
 }

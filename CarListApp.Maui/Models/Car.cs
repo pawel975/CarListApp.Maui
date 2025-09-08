@@ -1,11 +1,13 @@
-﻿namespace CarListApp.Maui.Models
+﻿using SQLite;
+
+namespace CarListApp.Maui.Models
 {
-    public class Car
+    [Table("cars")]
+    public class Car : BaseEnitity
     {
-        public int Id { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
+        [MaxLength(12), Unique]
         public string Vin { get; set; }
     }
-
 }
