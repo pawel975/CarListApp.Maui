@@ -1,5 +1,7 @@
 ﻿using CarListApp.Maui.Models;
 using SQLite;
+using System.Threading.Tasks;
+using static SQLite.SQLite3;
 
 namespace CarListApp.Maui.Services
 {
@@ -8,6 +10,7 @@ namespace CarListApp.Maui.Services
         private SQLiteConnection conn;
         private readonly string _dbPath;
         public string StatusMessage;
+        public int result;
 
         private void Init()
         {
@@ -35,7 +38,54 @@ namespace CarListApp.Maui.Services
             }
 
             return new List<Car>();
+        }
 
+        public Car? GetCar(int id)
+        {
+            try
+            {
+                Init();
+                return conn.Table<Car>().FirstOrDefault(q => q.Id == id);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Failed to retrieve data.";
+            }
+
+            return null;
+        }
+
+        public int DeleteCar(int id)
+        {
+            try
+            {
+                Init();
+                return conn.Table<Car>().Delete(q => q.Id == id);
+            }
+            catch (Exception)
+            {
+                StatusMessage = "Failed to delete data.";
+            }
+
+            return 0;
+        }
+
+        public void AddCar(Car car)
+        {
+            try
+            {
+                Init();
+
+                if (car == null)
+                    throw new Exception("Invalid Car Record");
+
+                result = conn.Insert(car);
+                StatusMessage = result == 0 ? "Insert Failed" : "Insert Successful";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Failed to Insert data.";
+            }
         }
     }
 }
