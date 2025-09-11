@@ -70,6 +70,24 @@ namespace CarListApp.Maui.Services
             return 0;
         }
 
+        public void UpdateCar(Car car)
+        {
+            try
+            {
+                Init();
+
+                if (car == null)
+                    throw new Exception("Invalid Car Record");
+
+                result = conn.Update(car);
+                StatusMessage = result == 0 ? "Update Failed" : "Update Successful";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Failed to Update data.";
+            }
+        }
+
         public void AddCar(Car car)
         {
             try
