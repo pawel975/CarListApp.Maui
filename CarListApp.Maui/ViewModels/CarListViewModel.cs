@@ -1,4 +1,5 @@
 ﻿using CarListApp.Maui.Models;
+using CarListApp.Maui.Services;
 using CarListApp.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -11,13 +12,16 @@ namespace CarListApp.Maui.ViewModels
     {
         const string editButtonText = "Update Car";
         const string createButtonText = "Add Car";
+        private readonly CarApiService carApiService;
+
         public ObservableCollection<Car> Cars { get; private set; } = new();
 
-        public CarListViewModel()
+        public CarListViewModel(CarApiService carApiService)
         {
             Title = "Car List";
             AddEditButtonText = createButtonText;
             GetCarList().Wait(); // We're waiting for task to end
+            this.carApiService = carApiService;
         }
 
         [ObservableProperty]
@@ -41,8 +45,8 @@ namespace CarListApp.Maui.ViewModels
             {
                 IsLoading = true;
                 if (Cars.Any()) Cars.Clear();
-
-                var cars = App.CarService.GetCars();
+                var cars = new List<Car>();
+                cars = await carApiService.GetCars();
                 foreach (var car in cars) Cars.Add(car);
             }
             catch (Exception ex)

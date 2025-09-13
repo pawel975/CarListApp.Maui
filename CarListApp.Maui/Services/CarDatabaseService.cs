@@ -5,7 +5,7 @@ using static SQLite.SQLite3;
 
 namespace CarListApp.Maui.Services
 {
-    public class CarService
+    public class CarDatabaseService
     {
         private SQLiteConnection conn;
         private readonly string _dbPath;
@@ -21,7 +21,7 @@ namespace CarListApp.Maui.Services
             conn.CreateTable<Car>();
         }
 
-        public CarService(string dbPath)
+        public CarDatabaseService(string dbPath)
         {
             _dbPath = dbPath;
         }
