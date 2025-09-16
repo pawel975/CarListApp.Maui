@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+
+		<!-- wymuś namespace -->
+
+
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<IsTrimmable>true</IsTrimmable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<LibraryProjectZip Include="Jars\bxlwrap-release.aar" />
+		<AndroidMetadata Include="Transforms\Metadata.xml" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AndroidCodegenTargetNamespace>Com.Example.Bxlwrap</AndroidCodegenTargetNamespace>
+		<AndroidClassParser>jar2xml</AndroidClassParser>
+	</PropertyGroup>
+</Project>

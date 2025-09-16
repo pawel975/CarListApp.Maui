@@ -1,0 +1,13 @@
+﻿<metadata>
+	<!-- wytnij wszystkie inne pakiety -->
+	<remove-node path="/api/package[not(@name='com.example.bxlwrap')]" />
+
+	<!-- jawnie upewnij się, że Twoje API jest publiczne -->
+	<attr path="/api/package[@name='com.example.bxlwrap']/class[@name='BxlPrinterFacade']" name="visibility">public</attr>
+	<attr path="/api/package[@name='com.example.bxlwrap']/interface[@name='PrinterEvents']" name="visibility">public</attr>
+
+	<!-- nazwy metod interfejsu -->
+	<attr path="/api/package[@name='com.example.bxlwrap']/interface[@name='PrinterEvents']/method[@name='onReady']"        name="managedName">OnReady</attr>
+	<attr path="/api/package[@name='com.example.bxlwrap']/interface[@name='PrinterEvents']/method[@name='onError']"        name="managedName">OnError</attr>
+	<attr path="/api/package[@name='com.example.bxlwrap']/interface[@name='PrinterEvents']/method[@name='onDisconnected']" name="managedName">OnDisconnected</attr>
+</metadata>
