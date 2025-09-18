@@ -20,7 +20,7 @@ namespace CarListApp.Maui.Services
         {
             try
             {
-                await SetAuthToken(); // Głupie tutaj wywoływać ale tak było w kursie
+                await SetAuthToken(); // Przenieść to do middleware
                 var response = await _httpClient.GetStringAsync("/cars");
                 return JsonConvert.DeserializeObject<List<Car>>(response);
             }

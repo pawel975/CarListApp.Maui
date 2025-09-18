@@ -1,4 +1,5 @@
-﻿using CarListApp.Maui.Models;
+﻿using CarListApp.Maui.Helpers;
+using CarListApp.Maui.Models;
 using CarListApp.Maui.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -46,19 +47,13 @@ namespace CarListApp.Maui.ViewModels
                         Role = jsonToken.Claims.FirstOrDefault(q => q.Type.Equals(ClaimTypes.Role))?.Value
                     };
 
+                    MenuBuilder.BuildMenu();
                     await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
 
                 }
                 else
                 {
                     await DisplayLoginMessage("Invalid login attempt");
-                }
-
-                var loginSuccessful = true;
-
-                if (loginSuccessful)
-                {
-                    // Display 
                 }
             }
 
