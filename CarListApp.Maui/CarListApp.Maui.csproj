@@ -71,10 +71,7 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <ProjectReference Include="..\CarListApp.Maui.BixolonBinding\CarListApp.Maui.BixolonBinding.csproj" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
